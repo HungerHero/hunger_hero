@@ -1,4 +1,5 @@
 import { updateUser } from '../../utilities/users-api'
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
 
 export default function BusinessForm(props) {
     const { setUser, handleChange, handleSubmit, formData, setFormData } = props 
