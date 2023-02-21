@@ -1,0 +1,12 @@
+.title {
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 48px;
+/* identical to box height */
+
+text-align: left;
+
+color: #000000;
+}
