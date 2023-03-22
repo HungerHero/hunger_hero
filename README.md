@@ -4,6 +4,8 @@
 
 Hunger Hero is a MERN full CRUD app that aims to reduce food waste by connecting businesses (such as restaurants, food trucks, and grocery stores) with organizations like food banks and soup kitchens to donate soon-to-expire food!
 
+The site can be found <a href="https://hungerhero23.herokuapp.com">here</a> 
+
 This app was developed over a two-day hackathon by a team of four UX/UI designers and four developers, including:
 
 - Christopher Villa
