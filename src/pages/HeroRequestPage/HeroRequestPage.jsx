@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PostCard from "../../components/PostCard/PostCard";
 import ReceiverCard from "../../components/ReceiverCard/ReceiverCard";
+import "./HeroRequestPage.css";
 
 export default function HeroRequestPage() {
   const navigate = useNavigate();
@@ -60,12 +61,14 @@ export default function HeroRequestPage() {
       <button onClick={handleBackClick}>
         Back
       </button>
-      <h1 style={{'fontSize': '68px', 'textAlign': 'center'}}>Request for pick up</h1>
+      <h1 className="order-header">Request for pick up</h1>
       <div className="order-container">
         <div className="order-distributor">
+          <h2 className="request-user-title">Donation</h2>
           <PostCard name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user}/>
         </div>
         <div className="order-receiver">
+          <h2 className="request-user-title">Receiver</h2>
           <ReceiverCard name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} />
         </div>
       </div>
