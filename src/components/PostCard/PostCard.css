@@ -18,7 +18,6 @@
   width: 50%;
   margin-top: 10px;
   border-radius: 10%;
-  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .food-card-image img {
@@ -66,7 +65,7 @@
 .request-button {
   margin: 10px;
   padding: 10px;
-  background-color: green;
+  background-color: #528a4e;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -74,5 +73,5 @@
 }
 
 .request-button:hover {
-  opacity: 0.8;
+  background-color: #7fbf7b;
 }
