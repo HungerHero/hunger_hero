@@ -11,6 +11,7 @@ import './SignUpForm.css';
 
 export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
   const [showBusinessForm, setShowBusinessForm] = useState(true)
+  const [show, setShow] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +28,9 @@ export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
     phoneNumber: '',
     error: ''
   });
+
+  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false)
 
   const handleChange = (evt) => {
     setFormData({
@@ -127,6 +131,7 @@ export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
           }
         </form>
         <div className='flex justify-end text-sm'>
+          <div className='font-medium text-grey-600 hover:text-indigo-50 underline mb-4' id='switchForm' onClick={() => handleShow()}>What are these?</div>
           <div className='font-medium text-grey-600 hover:text-indigo-50 underline mb-4' id='switchForm' onClick={() => setShowSignUp(true)}>Already have an account?</div>
         </div>
       </div>
