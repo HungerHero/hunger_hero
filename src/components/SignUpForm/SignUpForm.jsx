@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import BusinessForm from '../BusinessForm/BusinessForm';
 // import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import Modal from '../Modal/Modal';
 import './SignUpForm.css';
 
 // const UserTypes = {
@@ -11,7 +12,7 @@ import './SignUpForm.css';
 
 export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
   const [showBusinessForm, setShowBusinessForm] = useState(true)
-  const [show, setShow] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,8 +30,10 @@ export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
     error: ''
   });
 
-  const handleShow = () => setShow(true)
-  const handleClose = () => setShow(false)
+  function handleShow() {
+    setHidden(!hidden)
+  }
+    
 
   const handleChange = (evt) => {
     setFormData({
@@ -131,9 +134,15 @@ export default function SignUpForm({ setUser, showSignUp, setShowSignUp }){
           }
         </form>
         <div className='flex justify-end text-sm'>
-          <div className='font-medium text-grey-600 hover:text-indigo-50 underline mb-4' id='switchForm' onClick={() => handleShow()}>What are these?</div>
+          <div className='font-medium text-grey-600 hover:text-indigo-50 underline mb-4' id='switchForm' onClick={handleShow}>What are these?</div>
           <div className='font-medium text-grey-600 hover:text-indigo-50 underline mb-4' id='switchForm' onClick={() => setShowSignUp(true)}>Already have an account?</div>
         </div>
+        {hidden && (
+          <Modal
+            hidden={hidden}
+            handleShow={handleShow}
+          />
+        )}
       </div>
     </div>
   )

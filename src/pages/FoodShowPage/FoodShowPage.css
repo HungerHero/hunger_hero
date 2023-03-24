@@ -1,0 +1,93 @@
+/* .showCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 100vw;
+} */
+/* 
+.showCardContentCont, .showCardConactCont {
+    display: flex;
+    width: 30%;
+}
+
+.showCardContent, .showCardContact {
+    display: flex;
+    flex-direction: column;
+}
+
+.showImg {
+    margin-right: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+}
+
+.cardTitle {
+    width: 100%;
+    background-color: tomato;
+} */
+
+.showCardContentCont {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    width: 900px;
+    height: 450px;
+    
+    background: hsl(0,0%,95%);
+    box-shadow: 1px 1px 25px 3px rgba(0,0,0,.3); 
+}
+
+.cardTitle {
+    /* position: absolute; */
+    width: max-content;
+    font-size: 2.875rem;
+    border-bottom: 5px solid black;
+    margin-bottom: 5%;
+  
+    white-space: nowrap;
+    
+    /* top: 25%;
+    left: 7%; */
+}
+
+.cardTitle:after {
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5%;
+    
+    background: black;
+}
+
+.showCardContent {
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 1.525rem;
+    width: 40%;
+    
+    top: 45%;
+    left: 7%;
+}
+
+.showImg {
+    position: absolute;
+    top: 0;
+    right: 0;
+  
+    width: 50%;
+    height: 100%;
+    clip-path: polygon(35% 0%, 100% 0, 100% 100%, 8% 100%); 
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}

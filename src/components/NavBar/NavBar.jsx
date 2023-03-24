@@ -11,8 +11,10 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className='navBar'>
+      { user.userType === 'Hero' ? 
+      <>
       <div className='navLogo'>
-        <img className='logoImg' src="../../images/logo.png" alt='logo' / >
+        <img className='logoImg' src="../../images/logo.png" alt='logo' />
       </div>
       <h2>Hunger Hero</h2>
         <Link className='navLinks' to="/" >Home</Link>
@@ -27,6 +29,25 @@ export default function NavBar({ user, setUser }) {
         &nbsp;&nbsp;
         {/* <span>Welcome, {user.businessName}</span> */}
         &nbsp;&nbsp;<Link className='navLinks' to="" onClick={handleLogOut}>Log Out</Link>
+      </>
+      :
+      <>
+      <div className='navLogo'>
+        <img className='logoImg' src="../../images/logo.png" alt='logo' />
+      </div>
+      <h2>Hunger Hero</h2>
+        <Link className='navLinks' to="/" >Home</Link>
+        &nbsp; | &nbsp;
+        <Link className='navLinks' to="/hero">All Posts</Link>
+        &nbsp; | &nbsp;
+        <Link className='navLinks' to="/requests" >Requests</Link>
+        &nbsp; | &nbsp;
+        <Link className='navLinks' to="/profile">My Account</Link>
+        &nbsp;&nbsp;
+        {/* <span>Welcome, {user.businessName}</span> */}
+        &nbsp;&nbsp;<Link className='navLinks' to="" onClick={handleLogOut}>Log Out</Link>
+      </>
+      }
     </nav>
   );
 }
