@@ -1,6 +1,28 @@
 import './PostCard.css'
+import { createRequest } from '../../utilities/request-api'; 
 
-export default function PostCard({ name, quantity, description, availableTime, availableDate, location, photoUrl, user}) {
+export default function PostCard({ name, quantity, description, availableTime, availableDate, location, photoUrl, user, curUser, post}) {
+
+
+
+  const handleRequest = async () => {
+    // populate both hungry and hero userType request pages with requestCard component
+    console.log(post, curUser)
+    let request = {
+      status: 'pending',
+      requester: curUser._id,
+      postInfo: post._id
+    }
+    console.log(request, "request info")
+    // evt.preventDefault();
+    try {
+      const requestData = await createRequest(request);
+      console.log(requestData)
+    } catch {
+      console.log("Failed to create request");
+    }
+  }
+
   return (
     <div className='food-card'>
   <div className='food-card-image'>
@@ -23,7 +45,9 @@ export default function PostCard({ name, quantity, description, availableTime, a
       <span>{availableTime}</span>
     </div>
   </div>
-  <button className='request-button'>Request Pick Up</button>
+  { curUser.userType === 'Hungry' && 
+  <button className='request-button' onClick={handleRequest}>Request Pick Up</button>
+  }
 </div>
 
   );
