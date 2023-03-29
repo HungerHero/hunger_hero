@@ -33,8 +33,8 @@ async function getRequest(req, res) {
 }
 
 async function getRequesterUser(req, res) {
-    console.log(req.body, 'ctrl reqbody')
-    const users = await User.find({ _id: { $in: req.body.userIds } });
+    console.log( 'ctrl reqbody --> ', req.body)
+    const users = await User.find({ _id: { $in: req.body} });
     res.json(users)
     console.log(users)
 }
@@ -45,6 +45,6 @@ async function getRequesterUser(req, res) {
 
 async function index(req, res){
     const request = await Request.find({}).exec()
-    console.log(request, 'index fnc called')
+    console.log(request, 'request index fnc called')
     res.json(request);
   }
