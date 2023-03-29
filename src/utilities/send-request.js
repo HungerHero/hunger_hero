@@ -3,7 +3,7 @@ import { getToken } from './users-service';
 export default async function sendRequest(url, method = 'GET', payload = null) {
   // Fetch accepts an options object as the 2nd argument
   // used to include a data payload, set headers, specifiy the method, etc.
-  console.log("THIS IS URL", url)
+  // console.log("THIS IS URL", url)
   const options = { method };
   if (payload) {
     options.headers = { 'Content-Type': 'application/json' };

@@ -1,23 +1,22 @@
 import { useState, useEffect } from 'react';
 // import { post } from '../../routes/api/users';
+import PostCard from '../../components/PostCard/PostCard';
 import * as requestsAPI from '../../utilities/request-api';
 
 export default function HungryRequestPage( { user, posts } ) {
     const [requests, setRequests] = useState([]);
     const [requestUser, setRequestUser] = useState([]);
-
+    const requestPosts = requests.map((r) => posts.find((p) => p._id === r.postInfo))
+    console.log('requestPosts -->', requestPosts)
+    console.log('user -->', user)
     useEffect(function() {
         (async function() {
             try {
                 const requests = await requestsAPI.getAll()
-                console.log('requests', requests)
+                setRequests(requests)
                 const userIds = requests.map((request) => request.requester)
-                console.log(userIds)
-                const users = await requestsAPI.getRequesterUser(userIds)
-                console.log(users, 'users:')
-                // const user = await Promise.all(requests.map(request => requestsAPI.getRequesterUser(request.requester)));
-                // setRequests(requests)
-                // setRequestUser(user)
+                const reqUser = await requestsAPI.getRequesterUser(userIds)
+                setRequestUser(reqUser)
             }
             catch {
                 console.log('render request error')
@@ -34,18 +33,17 @@ export default function HungryRequestPage( { user, posts } ) {
         <>
             <h1>Hungry Request</h1>
             <div>
-            {requests.length !== 0 ?
-                requests.map((r, idx) => {
-                    console.log(r.requester)
+            {requestPosts.length !== 0 ?
+                requestPosts.map((r, idx) => {
                     return (
-                    // <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p}/>
-                    <>
-                        <h1>{r.status}</h1>
-                        <h1>{requestUser[idx].name}</h1>
-                        <h1>{user.name}</h1>
-                        {/* <h1>{posts.name}</h1> */}
-                    </>
-                )
+                    <PostCard key={idx} name={r.name} quantity={r.quantity} description={r.description} availableTime={r.availableTime} availableDate={r.availableDate} location={r.location} photoUrl={r.photoUrl} user={r.user} curUser={user} idx={idx} post={r}/>)
+
+                    // <>
+                    //     <h1>{r.status}</h1>
+                    //     <h1>{requestUser.name}</h1>
+                    //     <h1>{user.name}</h1>
+                    //     <h1>{r.postInfo}</h1>
+                    // </>
             })
             :
             <div>

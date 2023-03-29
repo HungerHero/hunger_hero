@@ -28,10 +28,10 @@ export default function App() {
   // API REQUEST ON COMPONENT MOUNT
   useEffect(function () {
     (async function () {
-      console.log("index fnt");
+      // console.log("index fnt");
       // foodsAPI.getAll()
       const foodPosts = await foodsAPI.getAll();
-      console.log("THIS IS THE POSTS", foodPosts);
+      // console.log("THIS IS THE POSTS", foodPosts);
       setPosts(foodPosts);
     })();
   }, []);
@@ -100,7 +100,7 @@ export default function App() {
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route
                 path="/requests"
-                element={<HungryRequestPage user={user} navigate={navigate} />}
+                element={<HungryRequestPage user={user} navigate={navigate} posts={posts} />}
               />
             </Routes>
             <Footer />
