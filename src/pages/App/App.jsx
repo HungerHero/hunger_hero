@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 import FoodShowPage from "../FoodShowPage/FoodShowPage";
 import HeroLandingPage from "../HeroLandingPage/HeroLandingPage";
 import HeroRequestPage from "../HeroRequestPage/HeroRequestPage";
+import HungryRequestPage from "../HungryRequestPage/HungryRequestPage";
 import SplashPage from "../SplashPage/SplashPage";
 import AboutPage from "../AboutPage/AboutPage";
 import ContactPage from "../ContactPage/ContactPage";
@@ -27,10 +28,10 @@ export default function App() {
   // API REQUEST ON COMPONENT MOUNT
   useEffect(function () {
     (async function () {
-      console.log("index fnt");
+      // console.log("index fnt");
       // foodsAPI.getAll()
       const foodPosts = await foodsAPI.getAll();
-      console.log("THIS IS THE POSTS", foodPosts);
+      // console.log("THIS IS THE POSTS", foodPosts);
       setPosts(foodPosts);
     })();
   }, []);
@@ -76,7 +77,7 @@ export default function App() {
               <Route path="/hero/posts/:id" element={<FoodShowPage />} />
               <Route
                 path="/requests"
-                element={<HeroRequestPage user={user} navigate={navigate} />}
+                element={<HeroRequestPage user={user} posts={posts} navigate={navigate} />}
               />
               <Route path="/splash" element={<SplashPage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -97,6 +98,10 @@ export default function App() {
                   }
               />
               <Route path="/profile" element={<ProfilePage user={user} />} />
+              <Route
+                path="/requests"
+                element={<HungryRequestPage user={user} navigate={navigate} posts={posts} />}
+              />
             </Routes>
             <Footer />
           </>

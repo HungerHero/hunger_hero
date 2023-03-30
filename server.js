@@ -33,7 +33,8 @@ app.use(bodyParser.json())
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/foods', require('./routes/api/foods'))
+app.use('/api/foods', require('./routes/api/foods'));
+app.use('/api/requests', require('./routes/api/requests'));
 
 
 // The following "catch all" route (note the *) is necessary

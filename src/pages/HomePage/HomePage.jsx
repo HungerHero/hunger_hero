@@ -68,7 +68,7 @@ export default function HomePage({ user, navigate, posts, setPosts }) {
       {posts.length !== 0 ?
        posts.map((p, idx) => {
         return (
-          <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} idx={idx} />
+          <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p}/>
         )
       })
       :

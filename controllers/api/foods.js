@@ -32,9 +32,9 @@ async function getFood(req, res) {
 }
 
 async function index(req, res){
-  console.log('index almost called')
+  // console.log('index almost called')
   const food = await Food.find({}).exec()
-  console.log(food, 'index fnc called')
+  // console.log(food, 'index fnc called')
   res.json(food);
 }
 
