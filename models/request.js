@@ -1,3 +1,4 @@
+const { request } = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -19,5 +20,7 @@ const requestSchema = new Schema({
     ref: 'Food',
   },
 })
+
+requestSchema.index( { requester: 1, postInfo: 1 }, { unique: true })
 
 module.exports = mongoose.model('Request', requestSchema);

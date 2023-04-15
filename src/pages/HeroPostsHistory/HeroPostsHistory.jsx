@@ -23,7 +23,7 @@ console.log("ThisIsThePosts -*--> ", posts)
       </div>
         {posts.map(post => (
           <HeroHistoryCard key={post._id} id={post._id} name={post.name} quantity={post.quantity} description={post.description} condition={post.condition} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} phoneNumber={post.phoneNumber}
-          photoUrl={post.photoUrl} handleDeleteFood={handleDeleteFood} />
+          photoUrl={post.photoUrl} handleDeleteElement={handleDeleteFood} />
         ))}
     </div>
   );
