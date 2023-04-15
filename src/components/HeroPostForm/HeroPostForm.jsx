@@ -20,6 +20,8 @@ const conditions = [
 export default function HeroForm(props) {
   const { navigate } = props
   const [isActive, setIsActive] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [isActive3, setIsActive3] = useState(false);
   const [formData, setFormData] = useState({
       name: FoodTypes.FreshProduce,
       quantity: '',
@@ -63,7 +65,7 @@ export default function HeroForm(props) {
             value={condition}
             type="button"
             className="condition-label"
-            id={isActive ? 'clicked': 'notClicked'}
+            id={isActive2 ? 'clicked': 'notClicked'}
             // className={buttonClasses(isSelected)}
             onClick={(e) => handleToggle(e)}
           >
@@ -83,7 +85,7 @@ export default function HeroForm(props) {
             value={condition}
             type="button"
             className="condition-label"
-            id={isActive ? 'clicked': 'notClicked'}
+            id={isActive3 ? 'clicked' : 'notClicked' }
             // className={buttonClasses(isSelected)}
             onClick={(e) => handleToggle(e) }
           >
@@ -114,7 +116,13 @@ const handleChange = (evt) => {
       // e.preventDefault();
     // new code
       console.log(e.target)
-      setIsActive(!isActive);
+      if(e.target.value === 'Frozen') {
+        setIsActive(!isActive);
+      } else if(e.target.value === 'Hot') {
+        setIsActive2(!isActive2)
+      } else if(e.target.value === 'Perishable') {
+        setIsActive3(!isActive3)
+      }
       const tmpData = {...formData};
       // conditional chaining
       const idx = tmpData?.conditions?.indexOf(e.target.value);
