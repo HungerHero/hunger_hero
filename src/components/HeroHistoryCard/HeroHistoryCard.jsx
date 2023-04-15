@@ -15,19 +15,19 @@ export default function HeroHistoryCard(props) {
     phoneNumber,
     photoUrl,
     content,
-    handleDeleteFood,
+    handleDeleteElement,
   } = props;
   const [modalHidden, setModalHidden] = useState(false);
   const navigate = useNavigate();
 
   function handlePostNav() {
-    console.log(id);
+    console.log('ID ->->', id);
     navigate(`/hero/posts/${id}`);
   }
 
   function handleDelete() {
     setModalHidden(!modalHidden);
-    handleDeleteFood(props.id);
+    handleDeleteElement(props.id);
   }
 
   function showModal() {

@@ -65,7 +65,7 @@ export default function HeroRequestPage() {
       <div className="order-container">
         <div className="order-distributor">
           <h2 className="request-user-title">Donation</h2>
-          <PostCard name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user}/>
+          <PostCard name={p.name} id={p.id}quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user}/>
         </div>
         <div className="order-receiver">
           <h2 className="request-user-title">Receiver</h2>

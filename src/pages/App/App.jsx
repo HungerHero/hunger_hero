@@ -44,7 +44,7 @@ export default function App() {
   }
 
   return (
-    <main style={{ backgroundColor: "#F3F3F3" }}>
+    <main>
       {user ? (
         user.userType === "Hero" ? (
           <>

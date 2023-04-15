@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 // import { post } from '../../routes/api/users';
-import PostCard from '../../components/PostCard/PostCard';
+import HeroHistoryCard from '../../components/HeroHistoryCard/HeroHistoryCard';
 import * as requestsAPI from '../../utilities/request-api';
+import './HungryRequestPage.css'
 
 export default function HungryRequestPage( { user, posts } ) {
     const [requests, setRequests] = useState([]);
     const [requestUser, setRequestUser] = useState([]);
     const requestPosts = requests.map((r) => posts.find((p) => p._id === r.postInfo))
+    console.log('requests -->', requests)
     console.log('requestPosts -->', requestPosts)
+    console.log('requests !!!!!!!!!', requests)
     console.log('user -->', user)
     useEffect(function() {
         (async function() {
@@ -31,12 +34,15 @@ export default function HungryRequestPage( { user, posts } ) {
 
     return (
         <>
-            <h1>Hungry Request</h1>
+            <div className="hungry_request_title">
+              <h1>Scheduled Pickups</h1>
+            </div>
             <div>
-            {requestPosts.length !== 0 ?
+            {requestPosts.length !== 0 && requests.requester === user._id ?
                 requestPosts.map((r, idx) => {
+                    // {if(requests.requester === user._id)
                     return (
-                    <PostCard key={idx} name={r.name} quantity={r.quantity} description={r.description} availableTime={r.availableTime} availableDate={r.availableDate} location={r.location} photoUrl={r.photoUrl} user={r.user} curUser={user} idx={idx} post={r}/>)
+                    <HeroHistoryCard id={r._id} key={idx} name={r.name} quantity={r.quantity} description={r.description} availableTime={r.availableTime} availableDate={r.availableDate} location={r.location} photoUrl={r.photoUrl} user={r.user} curUser={user} idx={idx} post={r}/>)
 
                     // <>
                     //     <h1>{r.status}</h1>
