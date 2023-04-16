@@ -42,9 +42,12 @@ async function getReceiverPickups(req, res) {
 
 async function getDistributorPickups(req, res) {
   try {
-    const pickups = await Pickup.find({ 'postInfo.user._id': req.params.id })
+    console.log("Pickups Ctrl params id ->", req.params.id)
+    const pickups = await Pickup.find({ 'postInfo.user': req.params.id })
+      .populate('postInfo.user')
       .populate('receiver')
       .populate('postInfo');
+      console.log("Pickups Ctrl ->", pickups);
     res.json(pickups);
   } catch (err) {
     res.status(400).json({ message: err.message });
