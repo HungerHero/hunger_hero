@@ -1,38 +1,13 @@
 import * as foodsAPI from '../../utilities/food-api';
+import * as pickupAPI from '../../utilities/pickup-api';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import PostCard from '../../components/PostCard/PostCard';
 import './HomePage.css'
 
 
 export default function HomePage({ user, navigate, posts, setPosts }) {
-
-  //   const [posts, setPosts] = useState([])
-
-  // // API REQUEST ON COMPONENT MOUNT
-  // useEffect(function() {
-  //   (async function() {
-  //       console.log('index fnt')
-  //       // foodsAPI.getAll()
-  //       const foodPosts = await foodsAPI.getAll()
-  //       setPosts(foodPosts)
-  //   })();
-  //   console.log("THIS IS THE USER", user)
-  // }, [])
-
-  // useEffect(() => {
-  //     console.log(posts)
-  // }, [posts])
-
-  // async function handleApply() {
-  //   const filteredPosts = posts.filter(post => post.name === '')
-  //   return (
-  //     <PostCard 
-  //     productItems ={productItems.filter(item => item.category.name === 'Mens')}
-  //     />
-  //   )
-  // }
-
+  
   return (
     <div className='page-container'>
     <div className="banner">
@@ -68,7 +43,7 @@ export default function HomePage({ user, navigate, posts, setPosts }) {
       {posts.length !== 0 ?
        posts.map((p, idx) => {
         return (
-          <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p}/>
+          <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p} />
         )
       })
       :

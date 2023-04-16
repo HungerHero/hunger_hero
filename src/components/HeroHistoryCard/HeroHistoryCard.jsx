@@ -14,11 +14,12 @@ export default function HeroHistoryCard(props) {
     description,
     phoneNumber,
     photoUrl,
-    content,
-    handleDeleteElement,
+    post,
   } = props;
   const [modalHidden, setModalHidden] = useState(false);
   const navigate = useNavigate();
+
+  console.log("POST ->->", post.user.address);
 
   function handlePostNav() {
     console.log('ID ->->', id);
@@ -27,7 +28,7 @@ export default function HeroHistoryCard(props) {
 
   function handleDelete() {
     setModalHidden(!modalHidden);
-    handleDeleteElement(props.id);
+    // handleDeleteElement(props.id);
   }
 
   function showModal() {
@@ -57,6 +58,10 @@ export default function HeroHistoryCard(props) {
               {phoneNumber}
             </span>
           </div>
+          <h1>
+            #this is from the post user -- #
+            {post.user.address}
+          </h1>
           <div className="action-buttons">
             <div onClick={() => handlePostNav()} className="btn btn-green">
               See Post
