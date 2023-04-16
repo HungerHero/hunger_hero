@@ -21,8 +21,6 @@ export default function NavBar({ user, setUser }) {
         &nbsp; | &nbsp;
         <Link className='navLinks' to="/hero/posts">Your Posts</Link>
         &nbsp; | &nbsp;
-        <Link className='navLinks' to="/hero">All Posts</Link>
-        &nbsp; | &nbsp;
         <Link className='navLinks' to="/requests" >Requests</Link>
         &nbsp; | &nbsp;
         <Link className='navLinks' to="/profile">My Account</Link>
