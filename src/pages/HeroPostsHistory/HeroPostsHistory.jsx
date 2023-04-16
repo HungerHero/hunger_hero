@@ -21,10 +21,14 @@ console.log("ThisIsThePosts -*--> ", posts)
           </div>
         </Link>
       </div>
-        {posts.map(post => (
+        {posts.map(post => post.user === user._id ? (
           <HeroHistoryCard key={post._id} id={post._id} name={post.name} quantity={post.quantity} description={post.description} condition={post.condition} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} phoneNumber={post.phoneNumber}
-          photoUrl={post.photoUrl} handleDeleteElement={handleDeleteFood} />
-        ))}
+          photoUrl={post.photoUrl} handleDeleteFood={handleDeleteFood} />
+        )
+        : 
+        <div>
+        </div>
+        )}
     </div>
   );
 }

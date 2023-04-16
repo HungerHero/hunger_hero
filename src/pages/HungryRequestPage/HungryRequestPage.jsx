@@ -7,6 +7,7 @@ import './HungryRequestPage.css'
 export default function HungryRequestPage( { user, posts } ) {
     const [requests, setRequests] = useState([]);
     const [requestUser, setRequestUser] = useState([]);
+    const [userId, setUserId] = useState([]);
     const requestPosts = requests.map((r) => posts.find((p) => p._id === r.postInfo))
     console.log('requests -->', requests)
     console.log('requestPosts -->', requestPosts)
@@ -18,6 +19,7 @@ export default function HungryRequestPage( { user, posts } ) {
                 const requests = await requestsAPI.getAll()
                 setRequests(requests)
                 const userIds = requests.map((request) => request.requester)
+                setUserId(userIds)
                 const reqUser = await requestsAPI.getRequesterUser(userIds)
                 setRequestUser(reqUser)
             }
@@ -38,8 +40,9 @@ export default function HungryRequestPage( { user, posts } ) {
               <h1>Scheduled Pickups</h1>
             </div>
             <div>
-            {requestPosts.length !== 0 && requests.requester === user._id ?
+            {requestPosts.length !== 0 ?
                 requestPosts.map((r, idx) => {
+                    {console.log (userId, '< requester', user._id, '< user id')}
                     // {if(requests.requester === user._id)
                     return (
                     <HeroHistoryCard id={r._id} key={idx} name={r.name} quantity={r.quantity} description={r.description} availableTime={r.availableTime} availableDate={r.availableDate} location={r.location} photoUrl={r.photoUrl} user={r.user} curUser={user} idx={idx} post={r}/>)
