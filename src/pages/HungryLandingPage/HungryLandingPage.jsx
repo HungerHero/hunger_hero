@@ -1,7 +1,11 @@
 import './HungryLandingPage.css';
 import { Link } from "react-router-dom";
+import PostCard from "../../components/PostCard/PostCard";
 
-export default function HeroLandingPage() {
+export default function HeroLandingPage({ user, posts }) {
+  const sliceOfPosts = posts.slice(0, 4);
+
+
   return (
     <div className="body">
       <div className="heroBanner">
@@ -20,15 +24,30 @@ export default function HeroLandingPage() {
       </div>
       <h1 className="sampleText">Available pickups</h1>
       <div className="sampleItems">
-        <img src="./images/image1.png" alt="" />
+        {/* <img src="./images/image1.png" alt="" />
         <img src="./images/image2.png" alt="" />
         <img src="./images/image.png" alt="" />
-        <img src="./images/image5.png" alt="" />
+        <img src="./images/image5.png" alt="" /> */}
+        {sliceOfPosts.length !== 0 ?
+          sliceOfPosts.map((p, idx) => {
+              return (
+                <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p}/>
+              )
+          })
+        :
+        <div className="home-info">
+              <h1>No Food Posts Yet</h1>
+        </div>
+        }
+        <br />
+        <Link to="/hero">
+          <button className="learnBtn">More Pickups</button>
+        </Link>
       </div>
-      <h1 className="sampleText2">How you can help</h1>
+      <h1 className="sampleText2">How it works</h1>
       <div className="buttons">
         <div className="roundBtn">
-          <Link to="/hero/create">
+          <Link to="/hero">
             <img src="./images/icon3.png" alt="" />
           </Link>
         </div>
@@ -44,9 +63,9 @@ export default function HeroLandingPage() {
         </div>
       </div>
       <div className="buttonsText">
-        <h2>Create a post</h2>
-        <h2>Accept pickup request</h2>
-        <h2>Donate goods</h2>
+        <h2>Find a pickup</h2>
+        <h2>Request pickup</h2>
+        <h2>Connect</h2>
       </div>
       <div className="facts">
         <img className="factsImg" src="./images/factsImg.png" />

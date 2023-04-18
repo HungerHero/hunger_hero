@@ -90,7 +90,7 @@ export default function App() {
             <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/" element={<HungryLandingPage />} />
+              <Route path="/" element={<HungryLandingPage user={user} posts={posts}/>} />
               <Route
                   path="/hero"
                   element={
