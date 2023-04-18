@@ -5,7 +5,6 @@ import PostCard from "../../components/PostCard/PostCard";
 export default function HeroLandingPage({ user, posts }) {
   const sliceOfPosts = posts.slice(0, 4);
 
-
   return (
     <div className="body">
       <div className="heroBanner">
@@ -23,11 +22,7 @@ export default function HeroLandingPage({ user, posts }) {
         </div>
       </div>
       <h1 className="sampleText">Available pickups</h1>
-      <div className="sampleItems">
-        {/* <img src="./images/image1.png" alt="" />
-        <img src="./images/image2.png" alt="" />
-        <img src="./images/image.png" alt="" />
-        <img src="./images/image5.png" alt="" /> */}
+      <div className="samplePickups">
         {sliceOfPosts.length !== 0 ?
           sliceOfPosts.map((p, idx) => {
               return (
@@ -39,11 +34,10 @@ export default function HeroLandingPage({ user, posts }) {
               <h1>No Food Posts Yet</h1>
         </div>
         }
-        <br />
-        <Link to="/hero">
-          <button className="learnBtn">More Pickups</button>
-        </Link>
       </div>
+      <Link className ="pickupBtn" to="/hero">
+        <button className="learnBtn">More Pickups</button>
+      </Link>
       <h1 className="sampleText2">How it works</h1>
       <div className="buttons">
         <div className="roundBtn">
