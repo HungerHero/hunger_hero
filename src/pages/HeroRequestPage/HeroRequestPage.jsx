@@ -56,14 +56,13 @@ export default function HeroRequestPage(user, posts) {
   //   ]
   // }
 
-  console.log('user -> ', user);
+  console.log('user -> ', user, ' posts -> ', posts);
 
   useEffect(function() {
     async function getPickupRequests() {
         const pickupRequests = await pickupAPI.getDistributorPickups(user.user._id);
-        console.log('pickupRequests -> ', pickupRequests)
+        console.log('component-pickupRequests -> ', pickupRequests)
         setPickupRequests(pickupRequests);
-        console.log('pickupRequests -> ', pickupRequests)
       }
     getPickupRequests();
 }, [user._id]);

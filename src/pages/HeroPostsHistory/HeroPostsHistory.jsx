@@ -7,6 +7,7 @@ import HeroHistoryCard from '../../components/HeroHistoryCard/HeroHistoryCard';
 export default function HeroPostsHistory({ user, handleDeleteFood, posts }) {
 const [showPostForm, setShowPostForm] = useState(false);
 console.log("ThisIsThePosts -*--> ", posts)
+console.log('postHistory user -> ', user);
 
   return (
     <div>
