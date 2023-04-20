@@ -6,16 +6,15 @@ module.exports = {
   index,
   getRequest,
   getRequesterUser,
-//   delete: deleteFood
+  // getUsersRequests,
 }
 
 async function create(req, res) {
   try {
-    // Add the food to the db
-    console.log("THIS IS REQ.USER", req.user)
-    console.log("food object", req.body)
+    // console.log("THIS IS REQ.USER", req.user)
+    // console.log("food object", req.body)
     req.body.user = req.user._id
-    console.log("AFTER", req.body)
+    // console.log("AFTER", req.body)
     const request = await Request.create(req.body);
     res.json(request);
   } catch (err) {
@@ -39,12 +38,14 @@ async function getRequesterUser(req, res) {
     console.log(users)
 }
 
-// async function getUserRequest(req, res) {
-//     const requests = await Request.find({requester: req.body.user})
-// }
-
 async function index(req, res){
     const request = await Request.find({}).exec()
     console.log(request, 'request index fnc called')
     res.json(request);
   }
+
+// async function getUsersRequests(req, res) {
+//   const usersRequests = await Request.find({requester: req.body.user})
+//   console.log(usersRequests, 'usersRequests')
+//   res.json(usersRequests)
+// }

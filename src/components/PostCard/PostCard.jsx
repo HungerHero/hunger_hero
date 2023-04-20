@@ -1,26 +1,19 @@
 import './PostCard.css'
-import { createRequest } from '../../utilities/request-api'; 
+// import { createRequest } from '../../utilities/request-api'; 
+import { useNavigate } from "react-router-dom";
+import * as pickupAPI from '../../utilities/pickup-api';
 
-export default function PostCard({ name, quantity, description, availableTime, availableDate, location, photoUrl, user, curUser, post}) {
+export default function PostCard({ name, quantity, description, availableTime, availableDate, location, photoUrl, user, post}) {
+  const navigate = useNavigate();
 
-
-
-  const handleRequest = async () => {
-    // populate both hungry and hero userType request pages with requestCard component
-    console.log(post, curUser)
-    let request = {
+  async function handleCreatePickup() {
+    let pickup = {
       status: 'pending',
-      requester: curUser._id,
+      receiver: user,
       postInfo: post._id
     }
-    console.log(request, "request info")
-    // evt.preventDefault();
-    try {
-      const requestData = await createRequest(request);
-      console.log(requestData)
-    } catch {
-      console.log("Failed to create request");
-    }
+    const newPickup = await pickupAPI.createPickup(pickup);
+    navigate('/requests');
   }
 
   return (
@@ -45,9 +38,9 @@ export default function PostCard({ name, quantity, description, availableTime, a
       <span>{availableTime}</span>
     </div>
   </div>
-  { curUser.userType === 'Hungry' && 
-  <button className='request-button' onClick={handleRequest}>Request Pick Up</button>
-  }
+  {/* { user.userType === 'Hungry' &&  */}
+  <button className='request-button' onClick={handleCreatePickup}>Request Pick Up</button>
+  {/* } */}
 </div>
 
   );

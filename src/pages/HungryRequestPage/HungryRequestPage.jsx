@@ -1,58 +1,36 @@
 import { useState, useEffect } from 'react';
-// import { post } from '../../routes/api/users';
-import PostCard from '../../components/PostCard/PostCard';
-import * as requestsAPI from '../../utilities/request-api';
+import HeroHistoryCard from '../../components/HeroHistoryCard/HeroHistoryCard';
+import * as pickupAPI from '../../utilities/pickup-api';
+import './HungryRequestPage.css'
 
 export default function HungryRequestPage( { user, posts } ) {
-    const [requests, setRequests] = useState([]);
-    const [requestUser, setRequestUser] = useState([]);
-    const [userId, setUserId] = useState([]);
-    const requestPosts = requests.map((r) => posts.find((p) => p._id === r.postInfo))
-    console.log('requestPosts -->', requestPosts)
-    console.log('requests !!!!!!!!!', requests)
-    console.log('user -->', user)
+    const [pickupRequests, setPickupRequests] = useState([]);
+    
     useEffect(function() {
-        (async function() {
-            try {
-                const requests = await requestsAPI.getAll()
-                setRequests(requests)
-                const userIds = requests.map((request) => request.requester)
-                setUserId(userIds)
-                const reqUser = await requestsAPI.getRequesterUser(userIds)
-                setRequestUser(reqUser)
-            }
-            catch {
-                console.log('render request error')
-            }
-        })();
-        // console.log("THIS IS THE USER", user)
-    }, [])
-
-    // useEffect(() => {
-    //   console.log(posts)
-    // }, [posts])
-
+        async function getPickupRequests() {
+            const pickupRequests = await pickupAPI.getReceiverPickups(user._id);
+            console.log('pickupRequests -> ', pickupRequests)
+            setPickupRequests(pickupRequests);
+          }
+        getPickupRequests();
+    }, [user._id]);
+    console.log("pickups -> ", pickupRequests);
+   
     return (
         <>
-            <h1>Hungry Request</h1>
+            <div className="hungry_request_title">
+              <h1>Scheduled Pickups</h1>
+            </div>
             <div>
-            {requestPosts.length !== 0 ?
-                requestPosts.map((r, idx) => {
-                    {console.log (userId, '< requester', user._id, '< user id')}
-                    // {if(requests.requester === user._id)
-                    return (
-                    // <PostCard key={idx} name={r.name} quantity={r.quantity} description={r.description} availableTime={r.availableTime} availableDate={r.availableDate} location={r.location} photoUrl={r.photoUrl} user={r.user} curUser={user} idx={idx} post={r}/>)
-                    <>
-                        <h1>{requests[0].status}</h1>
-                        <h1>{requestUser.name}</h1>
-                        <h1>{user.name}</h1>
-                        {/* <h1>{r.postInfo}</h1> */}
-                    </>
-                )})
+              {pickupRequests.length !== 0 ?
+                pickupRequests.map((p, idx) => {
+                  return (
+                  <HeroHistoryCard id={p.postInfo._id} key={idx} name={p.postInfo.name} quantity={p.postInfo.quantity} description={p.postInfo.description} availableTime={p.postInfo.availableTime} availableDate={p.postInfo.availableDate} location={p.postInfo.location} photoUrl={p.postInfo.photoUrl} user={p.postInfo.user} curUser={user} idx={idx} post={p.postInfo}/>)
+              })
             :
             <div>
-                    <h1>No Food Posts Yet</h1>
-                    <h2>Be the first to post!</h2>
+              <h1>No Food Posts Yet</h1>
+              <h2>Be the first to post!</h2>
             </div>
             }
             </div>

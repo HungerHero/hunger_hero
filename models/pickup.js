@@ -1,8 +1,7 @@
-const { request } = require('express');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const requestSchema = new Schema({
+const pickupSchema = new Schema({
   // pickup status
   status: {
     type: String,
@@ -10,7 +9,7 @@ const requestSchema = new Schema({
     default: 'pending'
   },
   // to display the contact info of the hungry userType requesting pickup
-  requester: {
+  receiver: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
@@ -21,6 +20,6 @@ const requestSchema = new Schema({
   },
 })
 
-requestSchema.index( { requester: 1, postInfo: 1 }, { unique: true })
+pickupSchema.index( { requester: 1, postInfo: 1 }, { unique: true })
 
-module.exports = mongoose.model('Request', requestSchema);
+module.exports = mongoose.model('Pickup', pickupSchema);

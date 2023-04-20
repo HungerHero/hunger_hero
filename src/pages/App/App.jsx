@@ -44,7 +44,7 @@ export default function App() {
   }
 
   return (
-    <main style={{ backgroundColor: "#F3F3F3" }}>
+    <main>
       {user ? (
         user.userType === "Hero" ? (
           <>
@@ -77,7 +77,7 @@ export default function App() {
               <Route path="/hero/posts/:id" element={<FoodShowPage />} />
               <Route
                 path="/requests"
-                element={<HeroRequestPage user={user} posts={posts} navigate={navigate} />}
+                element={<HeroRequestPage user={user} posts={posts}/>}
               />
               <Route path="/splash" element={<SplashPage />} />
               <Route path="/about" element={<AboutPage />} />
