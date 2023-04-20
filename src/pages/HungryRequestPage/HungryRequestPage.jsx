@@ -5,7 +5,7 @@ import './HungryRequestPage.css'
 
 export default function HungryRequestPage( { user, posts } ) {
     const [pickupRequests, setPickupRequests] = useState([]);
-
+    
     useEffect(function() {
         async function getPickupRequests() {
             const pickupRequests = await pickupAPI.getReceiverPickups(user._id);
