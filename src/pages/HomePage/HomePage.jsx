@@ -7,7 +7,7 @@ import './HomePage.css'
 
 
 export default function HomePage({ user, navigate, posts, setPosts }) {
-  
+  console.log('posts on homepage - > ', posts);
   return (
     <div className='page-container'>
     <div className="banner">
@@ -41,16 +41,16 @@ export default function HomePage({ user, navigate, posts, setPosts }) {
     <hr />
     <div className="posts-container">
       {posts.length !== 0 ?
-       posts.map((p, idx) => {
-        return (
-          <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} curUser={user} idx={idx} post={p} />
+        posts.map((p, idx) => {
+          return (
+            <PostCard key={idx} name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={user} idx={idx} post={p} />
         )
       })
       :
-      <div className="home-info">
-            <h1>No Food Posts Yet</h1>
-            <h2>Be the first to post!</h2>
-      </div>
+        <div className="home-info">
+              <h1>No Food Posts Yet</h1>
+              <h2>Be the first to post!</h2>
+        </div>
     }
     </div>
   </div>

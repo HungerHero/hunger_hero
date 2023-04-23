@@ -16,15 +16,17 @@ console.log('postHistory user -> ', user);
         <Link to="/hero/create">
           <div className="create-post-icon-nav">
             <i className="fa-solid fa-plus create-post-icon"></i>
-            <div className="create-post-nav">
-              Create Post
-            </div>
+          </div>
+          <div className="create-post-nav">
+            Create Post
           </div>
         </Link>
       </div>
         {posts.map(post => post.user === user._id ? (
+          <>
           <HeroHistoryCard key={post._id} id={post._id} name={post.name} quantity={post.quantity} description={post.description} condition={post.condition} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} phoneNumber={post.phoneNumber}
           photoUrl={post.photoUrl} handleDeleteFood={handleDeleteFood} />
+          </>
         )
         : 
         <div>

@@ -2,6 +2,8 @@
   display: flex;
   position: relative;
   align-items: center;
+  justify-content: center;
+  width: 80%;
   padding: 3em;
 }
 
@@ -13,8 +15,14 @@
   width: 50%;
 }
 
+.hero-history-card__text > p{
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
 .hero-history-card__img {
   margin-right: 10px;
+  box-shadow: 2px 5px 5px grey;
   width: 200px;
   height: 200px;
   border-radius: 5%;
@@ -37,7 +45,7 @@
 .hero-history-card__info-line {
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: left;
   width: 100%;
 }
 
@@ -54,18 +62,6 @@
   cursor: pointer;
 }
 
-.btn {
-  color: white;
-  border: none;
-  text-align: center;
-  box-shadow: 0px 5px 5px grey;
-  margin: 50px 40px 0 30px;
-  width: 190px;
-  height: 40px;
-  padding: 10px;
-  border-radius: 13px;
-}
-
 .btn-green {
   background-color: #528a4e;
 }
@@ -91,18 +87,6 @@
   cursor: pointer;
 }
 
-.btn {
-  color: white;
-  border: none;
-  text-align: center;
-  box-shadow: 0px 5px 5px grey;
-  margin: 50px 40px 0 30px;
-  width: 190px;
-  height: 40px;
-  padding: 10px;
-  border-radius: 13px;
-}
-
 .btn-green {
   background-color: #528a4e;
 }
@@ -131,7 +115,7 @@
   color: white;
   border: none;
   text-align: center;
-  box-shadow: 0px 5px 5px grey;
+  box-shadow: 5px 5px 5px grey;
   margin: 50px 40px 0 30px;
   width: 190px;
   height: 40px;
@@ -155,10 +139,12 @@
   background-color: #444444;
 }
 /* make the hr be on the bottom of the card */
-hr {
+
+.card-btm-line {
   border: 1px solid rgb(179, 179, 179);
   justify-content: center;
-  width: 90%;
+  width: 80%;
+  left: 20%;
   position: absolute;
   bottom: 0;
 }

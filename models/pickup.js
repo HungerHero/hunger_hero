@@ -8,6 +8,10 @@ const pickupSchema = new Schema({
     enum: ['pending', 'denied', 'accepted'],
     default: 'pending'
   },
+  distributor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
   // to display the contact info of the hungry userType requesting pickup
   receiver: {
     type: mongoose.Schema.Types.ObjectId,

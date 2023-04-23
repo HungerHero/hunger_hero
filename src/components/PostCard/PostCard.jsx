@@ -5,11 +5,12 @@ import * as pickupAPI from '../../utilities/pickup-api';
 
 export default function PostCard({ name, quantity, description, availableTime, availableDate, location, photoUrl, user, post}) {
   const navigate = useNavigate();
-
+  console.log('post -> ', post, 'user -> ', user);
   async function handleCreatePickup() {
     let pickup = {
       status: 'pending',
       receiver: user,
+      distributor: post.user,
       postInfo: post._id
     }
     const newPickup = await pickupAPI.createPickup(pickup);

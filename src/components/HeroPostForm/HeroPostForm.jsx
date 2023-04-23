@@ -147,7 +147,7 @@ const handleChange = (evt) => {
       // in the payload of the JSON Web Token (JWT)
       const food = await createFood(foodData);
       // this.props.setFood(food);
-      navigate('/hero')
+      navigate('/hero/posts')
     } catch {
       // An error occurred
       setFormData({ error: 'Food creation failed - Try Again' });

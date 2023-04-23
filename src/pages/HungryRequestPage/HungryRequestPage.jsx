@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import HeroHistoryCard from '../../components/HeroHistoryCard/HeroHistoryCard';
+import PickupRequestCard from '../../components/PickupRequestCard/PickupRequestCard';
 import * as pickupAPI from '../../utilities/pickup-api';
 import './HungryRequestPage.css'
 
 export default function HungryRequestPage( { user, posts } ) {
     const [pickupRequests, setPickupRequests] = useState([]);
-    
+    console.log(user, ' <- user');
+
     useEffect(function() {
         async function getPickupRequests() {
             const pickupRequests = await pickupAPI.getReceiverPickups(user._id);
@@ -15,6 +16,11 @@ export default function HungryRequestPage( { user, posts } ) {
         getPickupRequests();
     }, [user._id]);
     console.log("pickups -> ", pickupRequests);
+
+    async function handleDeletePickupRequest(id) {
+      await pickupAPI.deletePickup(id);
+      setPickupRequests(pickupRequests.filter(p => p._id !== id));
+    }
    
     return (
         <>
@@ -25,7 +31,7 @@ export default function HungryRequestPage( { user, posts } ) {
               {pickupRequests.length !== 0 ?
                 pickupRequests.map((p, idx) => {
                   return (
-                  <HeroHistoryCard id={p.postInfo._id} key={idx} name={p.postInfo.name} quantity={p.postInfo.quantity} description={p.postInfo.description} availableTime={p.postInfo.availableTime} availableDate={p.postInfo.availableDate} location={p.postInfo.location} photoUrl={p.postInfo.photoUrl} user={p.postInfo.user} curUser={user} idx={idx} post={p.postInfo}/>)
+                  <PickupRequestCard id={p._id} key={idx} name={p.postInfo.name} quantity={p.postInfo.quantity} description={p.postInfo.description} availableTime={p.postInfo.availableTime} availableDate={p.postInfo.availableDate} location={p.postInfo.location} photoUrl={p.postInfo.photoUrl} postUser={p.postInfo.user} user={user} handleDeletePickupRequest={handleDeletePickupRequest} post={p.postInfo}/>)
               })
             :
             <div>
