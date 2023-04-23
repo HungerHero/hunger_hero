@@ -12,10 +12,11 @@ module.exports = {
 
 async function createPickup(req, res) {
   try {
-    console.log("PickupCtrl, create, req.user ->", req.user)
+    console.log("PickupCtrl, create, req.user ->", req.body)
     // console.log("food object", req.body)
-    req.body.receiver = req.user._id
-    console.log("AFTER", req.body)
+    // req.body.receiver = req.user._id
+    // req.body.distributor = req.body.postInfo.user
+    // console.log("AFTER", req.body)
     const request = await Pickup.create(req.body);
     res.json(request);
   } catch (err) {
@@ -46,6 +47,7 @@ async function getDistributorPickups(req, res) {
     const pickups = await Pickup.find({ 'postInfo.user': req.params.id })
     .populate('receiver')
     .populate('postInfo')
+    .populate('distributor')
     console.log("Pickups Ctrl ->", pickups);
     res.json(pickups);
   } catch (err) {
@@ -58,7 +60,7 @@ async function getPickup(req, res) {
     const pickup = await Pickup.findById(req.params.id)
       .populate('receiver')
       .populate('postInfo')
-      .populate('postInfo.user');
+      .populate('distributor');
     res.json(pickup);
   } catch (err) {
     res.status(400).json({ message: err.message });

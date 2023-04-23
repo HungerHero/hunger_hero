@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-label[for="file_input"] {
+label[for="img-file_input"] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +17,13 @@ label[for="file_input"] {
   border-radius: 20px;
   padding: 10px;
   cursor: pointer;
+}
+
+.upload-img {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 20px;
 }
 
 /* Hide the input */

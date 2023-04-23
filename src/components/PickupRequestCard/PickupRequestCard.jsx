@@ -1,36 +1,38 @@
-import "./HeroHistoryCard.css";
+import "./PickupRequestCard.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteWarning from "../DeleteWarning/DeleteWarning";
 
-export default function HeroHistoryCard(props) {
+export default function PickupRequestCard(props) {
   const {
     id,
+    key,
     name,
     quantity,
+    description,
     availableTime,
     availableDate,
     location,
-    description,
-    phoneNumber,
     photoUrl,
+    postUser,
+    user,
+    idx,
     post,
-    handleDeleteFood
+    handleDeletePickupRequest
   } = props;
-
   const [modalHidden, setModalHidden] = useState(false);
   const navigate = useNavigate();
 
-  // console.log("POST ->->", post.user.address);
+  console.log("POST ->->", post);
 
   function handlePostNav() {
     console.log('ID ->->', id);
-    navigate(`/hero/posts/${id}`); 
+    navigate(`/hero/posts/${post._id}`); 
   }
 
   function handleDelete() {
     setModalHidden(!modalHidden);
-    handleDeleteFood(props.id);
+    handleDeletePickupRequest(props.id);
   }
 
   function showModal() {
@@ -43,48 +45,42 @@ export default function HeroHistoryCard(props) {
       <div className="hero-history-card__content">
         <div>
           <h4 className="hero-history-card__title">{name}</h4>
-          <div className="hero-history-card__text">
-            <p className="hero-history-card__address">
-            <i class="fa-solid fa-shop"></i>
-            {location}</p>
-            <p className="hero-history-card__description">
-            <i class="fa-solid fa-bowl-food"></i>
-            {description}</p>
-            <p className="hero-history-card__quantity">
-            <i class="fa-solid fa-weight-scale"></i>
-            {quantity}</p>
-            {/* <div className="hero-history-card__info-line"> */}
-                <p className="hero-history-card__date">
-                  <i className="fa-regular fa-calendar-days"></i>
-                  {availableDate}
-                </p>
-                <p className="hero-history-card__time">
-                  <i className="fa-regular fa-clock"></i>
-                  {availableTime}
-                </p>
-              {/* <span>
-                <i className="fa-solid fa-phone"></i>
-                {phoneNumber}
-              </span> */}
-            {/* </div> */}
+          <p className="hero-history-card__address">{location}</p>
+          <p className="hero-history-card__description">{description}</p>
+          <p className="hero-history-card__quantity">{quantity}</p>
+          <div className="hero-history-card__info-line">
+            <span>
+              <i className="fa-regular fa-calendar-days"></i>
+              {availableDate}
+            </span>
+            <span>
+              <i className="fa-regular fa-clock"></i>
+              {availableTime}
+            </span>
+            <span>
+              <i className="fa-solid fa-phone"></i>
+              {/* {phoneNumber} */}
+            </span>
           </div>
           <h1>
+            #this is from the post user -- #
             {/* {post.user.address} */}
           </h1>
           <div className="action-buttons">
             <div onClick={() => handlePostNav()} className="btn btn-green">
-              See Donation
+              See Post
             </div>
             <div onClick={showModal} className="btn btn-black">
-              Cancel Donation
+              Need to Cancel?
             </div>
           </div>
         </div>
         {modalHidden && (
           <DeleteWarning
-            handleDelete={handleDelete}
+            handleDeletePickup={handleDelete}
             modalHidden={modalHidden}
             showModal={showModal}
+            cardType="pickup"
           />
         )}
       </div>

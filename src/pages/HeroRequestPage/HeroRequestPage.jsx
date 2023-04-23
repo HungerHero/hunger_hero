@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as pickupAPI from "../../utilities/pickup-api";
 import PostCard from "../../components/PostCard/PostCard";
 import ReceiverCard from "../../components/ReceiverCard/ReceiverCard";
@@ -7,7 +7,7 @@ import "./HeroRequestPage.css";
 
 export default function HeroRequestPage(user, posts) {
   const [pickupRequests, setPickupRequests] = useState([]);
-  // const { user } = useContext(UserContext);
+  // const [post, setPost] = useState({ posts}); /   /
   const navigate = useNavigate();
   // const p = {
   //   id: 1,
@@ -28,32 +28,7 @@ export default function HeroRequestPage(user, posts) {
   //     email: "",
   //     createdAt: "2021-04-01T00:00:00.000Z",
   //     updatedAt: "2021-04-01T00:00:00.000Z"
-  //   },
-  //   business: {
-  //     id: 1,
-  //     name: "Whole Foods",
-  //     email: "",
-  //     createdAt: "2021-04-01T00:00:00.000Z",
-  //     updatedAt: "2021-04-01T00:00:00.000Z"
-  //   },
-  //   messages: [
-  //     {
-  //       id: 1,
-  //       content: "Hi John, I can deliver 10 loaves of bread to you by 5pm. Please let me know if this works for you.",
-  //       createdAt: "2021-04-01T00:00:00.000Z",
-  //       updatedAt: "2021-04-01T00:00:00.000Z",
-  //       userId: 1,
-  //       orderId: 1
-  //     },
-  //     {
-  //       id: 2,
-  //       content: "Hi Whole Foods, that works for me. Thank you!",
-  //       createdAt: "2021-04-01T00:00:00.000Z",
-  //       updatedAt: "2021-04-01T00:00:00.000Z",
-  //       userId: 1,
-  //       orderId: 1
-  //     }
-  //   ]
+  //   }
   // }
 
   console.log('user -> ', user, ' posts -> ', posts);
@@ -80,11 +55,11 @@ export default function HeroRequestPage(user, posts) {
       <div className="order-container">
         <div className="order-distributor">
           <h2 className="request-user-title">Donation</h2>
-          {/* <PostCard name={p.name} id={p.id}quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user}/> */}
+          {/* <PostCard name={post.name} id={post.id}quantity={post.quantity} description={post.description} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} photoUrl={post.photoUrl} user={post.user}/>
         </div>
         <div className="order-receiver">
           <h2 className="request-user-title">Receiver</h2>
-          {/* <ReceiverCard name={p.name} quantity={p.quantity} description={p.description} availableTime={p.availableTime} availableDate={p.availableDate} location={p.location} photoUrl={p.photoUrl} user={p.user} /> */}
+          <ReceiverCard name={post.name} quantity={post.quantity} description={post.description} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} photoUrl={post.photoUrl} user={post.user} /> */}
         </div>
       </div>
     </div>
