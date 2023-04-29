@@ -1,0 +1,126 @@
+.hero-request-card {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding: 3em;
+}
+
+.hero-request-card__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 50px;
+  width: 50%;
+}
+
+.hero-request-card__text > p{
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.hero-request-card__img {
+  margin-right: 10px;
+  box-shadow: 2px 5px 5px grey;
+  width: 200px;
+  height: 200px;
+  border-radius: 5%;
+}
+
+.hero-request-card__title {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.hero-request-card__address{
+  margin: 5px 0;
+}
+
+.hero-request-card__food-type{
+  display: flex;
+  margin-right: 10px;
+}
+
+.hero-request-card__info-line {
+  display: flex;
+  flex: 1;
+  justify-content: left;
+  width: 100%;
+}
+
+.hero-request-card__info-line i {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.hero-request-card .action-buttons {
+  display: flex;
+}
+
+.hero-request-card .action-buttons div {
+  cursor: pointer;
+}
+
+.btn-green {
+  background-color: #528a4e;
+}
+
+.btn-green:hover {
+  background-color: #7fbf7b;
+}
+
+.btn-black {
+  background-color: #1b1b1b;
+}
+
+.btn-black:hover {
+  background-color: #444444;
+}
+
+.card-btm-line {
+  border: 1px solid rgb(179, 179, 179);
+  justify-content: center;
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.btn {
+  color: white;
+  border: none;
+  text-align: center;
+  box-shadow: 5px 5px 5px grey;
+  margin: 50px 40px 0 30px;
+  width: 190px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 13px;
+}
+
+.btn-green {
+  background-color: #528a4e;
+}
+
+.btn-green:hover {
+  background-color: #7fbf7b;
+}
+
+.btn-black {
+  background-color: #1b1b1b;
+}
+
+.btn-black:hover {
+  background-color: #444444;
+}
+/* make the hr be on the bottom of the card */
+
+.card-btm-line {
+  border: 1px solid rgb(179, 179, 179);
+  justify-content: center;
+  width: 80%;
+  left: 20%;
+  position: absolute;
+  bottom: 0;
+}
