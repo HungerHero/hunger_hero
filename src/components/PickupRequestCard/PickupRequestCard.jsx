@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DeleteWarning from "../DeleteWarning/DeleteWarning";
 
+
+// For Hungry/Receiver User
+
 export default function PickupRequestCard(props) {
   const {
     id,

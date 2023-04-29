@@ -70,14 +70,18 @@ export default function App() {
               <Route
                 path="/hero"
                 element={
-                  <HomePage user={user} posts={posts} setPosts={setPosts} navigate={navigate} />
+                  <HomePage 
+                    user={user} 
+                    posts={posts} 
+                    setPosts={setPosts} 
+                    navigate={navigate} 
+                  />
                 }
               />
-              {/* <Route path="/post/:id" element={<FoodShowPage />} /> */}
               <Route path="/hero/posts/:id" element={<FoodShowPage user={user} posts={posts}/>} />
-              {/* <Route
-                path="/requests"
-                element={<HeroRequestPage user={user} posts={posts}/>} */}
+              <Route
+                path="/hero/requests"
+                element={<HeroRequestPage user={user} posts={posts}/>}
               />
               <Route path="/splash" element={<SplashPage />} />
               <Route path="/about" element={<AboutPage />} />

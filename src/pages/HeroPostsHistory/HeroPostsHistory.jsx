@@ -24,8 +24,19 @@ console.log('postHistory user -> ', user);
       </div>
         {posts.map(post => post.user === user._id ? (
           <>
-          <HeroHistoryCard key={post._id} id={post._id} name={post.name} quantity={post.quantity} description={post.description} condition={post.condition} availableTime={post.availableTime} availableDate={post.availableDate} location={post.location} phoneNumber={post.phoneNumber}
-          photoUrl={post.photoUrl} handleDeleteFood={handleDeleteFood} />
+            <HeroHistoryCard 
+              key={post._id} 
+              name={post.name} 
+              quantity={post.quantity} 
+              description={post.description} 
+              condition={post.condition} 
+              availableTime={post.availableTime} 
+              availableDate={post.availableDate} 
+              location={post.location} 
+              phoneNumber={post.phoneNumber}
+              photoUrl={post.photoUrl} 
+              handleDeleteFood={handleDeleteFood} 
+            />
           </>
         )
         : 

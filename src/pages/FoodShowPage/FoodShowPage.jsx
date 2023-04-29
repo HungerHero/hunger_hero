@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import * as usersAPI from '../../utilities/users-api';
 import * as foodAPI from '../../utilities/food-api';
 import './FoodShowPage.css';
@@ -8,15 +8,9 @@ import './FoodShowPage.css';
 const FoodShowPage =  ( props ) => {
     const { user } = props
     const [post, setPost] = useState(null)
-    // const [owner, setOwner] = useState(null)
     const { id } = useParams()
+    const navigate = useNavigate()
 
-    // console.log(id, "PARAMS")
-    // const getUser = async () => {
-    //     const owner = await usersAPI.fetchUser(post.user)
-    //         setOwner(owner)
-    //   console.log("THIS IS THE OWNER", owner);
-    // }
 
     useEffect(() => {
         (async function() {  
@@ -27,15 +21,16 @@ const FoodShowPage =  ( props ) => {
         })();
     }, []) 
 
-    // useEffect(() => {
-    //     getUser()
-    // }, [post])
+    function handleBackButton() {
+      navigate('/hero/posts')
+    }
 
     return(
     <div className="body">
       {post ? (
       <div className='showCard'>
         <div className="showCardContentCont">
+          <button className='show-card-back-button' onClick={handleBackButton}><i className="fa-solid fa-arrow-left"></i></button>
           <img className="showImg" src={post.photoUrl}  alt="picture of food"/>
             <div className="showCardContent">
               <h1 className="cardTitle">Post Details</h1>
