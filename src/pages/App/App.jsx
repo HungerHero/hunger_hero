@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import * as foodsAPI from "../../utilities/food-api";
+import * as pickupAPI from "../../utilities/pickup-api";
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import HeroPostPage from "../HeroPostPage/HeroPostPage";
@@ -13,6 +14,7 @@ import Footer from "../../components/Footer/Footer";
 import FoodShowPage from "../FoodShowPage/FoodShowPage";
 import HeroLandingPage from "../HeroLandingPage/HeroLandingPage";
 import HeroRequestPage from "../HeroRequestPage/HeroRequestPage";
+import HeroShowRequestPage from "../HeroShowRequestPage/HeroShowRequestPage";
 import HungryRequestPage from "../HungryRequestPage/HungryRequestPage";
 import SplashPage from "../SplashPage/SplashPage";
 import AboutPage from "../AboutPage/AboutPage";
@@ -22,8 +24,11 @@ import HungryLandingPage from "../HungryLandingPage/HungryLandingPage";
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [posts, setPosts] = useState([]);
+  const [heroPickupRequests, setHeroPickupRequests] = useState([]);
+  const [pickupRequests, setPickupRequests] = useState([]);
   const [showSplash, setShowSplash] = useState(true);
   const navigate = useNavigate();
+  
 
   // API REQUEST ON COMPONENT MOUNT
   useEffect(function () {
@@ -35,6 +40,58 @@ export default function App() {
       setPosts(foodPosts);
     })();
   }, []);
+
+  useEffect(function() {
+    async function getDistributorPickupRequests() {
+        const distributor = user._id
+        console.log('user -> ', distributor);
+        const heroPickupRequestsAPI = await pickupAPI.getDistributorPickups(distributor);
+        console.log('component-heroPickupRequestsAPI -> ', heroPickupRequestsAPI)
+        setHeroPickupRequests(heroPickupRequestsAPI);
+      }
+      getDistributorPickupRequests();
+  }, []);
+
+  useEffect(() => {
+    console.log(heroPickupRequests, 'heroPickupRequests');
+  }, [heroPickupRequests]);
+
+
+  useEffect(function() {
+    async function getPickupRequests() {
+        const pickupRequests = await pickupAPI.getReceiverPickups(user._id);
+        console.log('pickupRequests -> ', pickupRequests)
+        setPickupRequests(pickupRequests);
+      }
+    getPickupRequests();
+  }, []);
+
+  async function handleAcceptPickupRequest(id) {
+    const updatedPickup = await pickupAPI.updatePickup(id, { status: 'accepted' });
+    console.log('updatedPickup -> ', updatedPickup);
+    // Update the status of the pickup request
+    const updatedRequests = heroPickupRequests.map(pickup => {
+      if (pickup._id === id) {
+        pickup.status = 'accepted';
+      }
+      return pickup;
+    });
+    setHeroPickupRequests(updatedRequests);
+  }
+  
+  async function handleDenyPickupRequest(id) {
+    console.log('id -> ', id);
+    const updatedPickup = await pickupAPI.updatePickup(id, { status: 'denied' });
+    console.log('updatedPickup -> ', updatedPickup);
+    // Update the status of the pickup request
+    const updatedRequests = heroPickupRequests.map(pickup => {
+      if (pickup._id === id) {
+        pickup.status = 'denied';
+      }
+      return pickup;
+    });
+    setHeroPickupRequests(updatedRequests);
+  }
 
   async function handleDeleteFood(id) {
     await foodsAPI.deleteFood(id);
@@ -81,7 +138,14 @@ export default function App() {
               <Route path="/hero/posts/:id" element={<FoodShowPage user={user} posts={posts}/>} />
               <Route
                 path="/hero/requests"
-                element={<HeroRequestPage user={user} posts={posts}/>}
+                element={<HeroRequestPage user={user} heroPickupRequests={heroPickupRequests} setHeroPickupRequests={setHeroPickupRequests}
+                handleAcceptPickupRequest={handleAcceptPickupRequest}
+                handleDenyPickupRequest={handleDenyPickupRequest}
+                />}
+              />
+              <Route
+                path="/hero/requests/:id"
+                element={<HeroShowRequestPage user={user} heroPickupRequests={heroPickupRequests} />}
               />
               <Route path="/splash" element={<SplashPage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -104,7 +168,7 @@ export default function App() {
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route
                 path="/requests"
-                element={<HungryRequestPage user={user} navigate={navigate} posts={posts} />}
+                element={<HungryRequestPage user={user} navigate={navigate} posts={posts} pickupRequests={pickupRequests} setPickupRequests={setPickupRequests} />}
               />
             </Routes>
             <Footer />

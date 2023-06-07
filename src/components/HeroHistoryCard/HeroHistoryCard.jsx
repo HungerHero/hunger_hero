@@ -21,7 +21,7 @@ export default function HeroHistoryCard(props) {
   const [modalHidden, setModalHidden] = useState(false);
   const navigate = useNavigate();
 
-  // console.log("POST ->->", post.user.address);
+  console.log("POST ->->", props);
 
   function handlePostNav() {
     console.log('ID ->->', id);

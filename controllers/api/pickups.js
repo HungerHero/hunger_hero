@@ -7,16 +7,16 @@ module.exports = {
   getDistributorPickups,
   getPickup,
   updatePickup,
-  // delete: deletePickup,
+  delete: deletePickup,
 }
 
 async function createPickup(req, res) {
   try {
-    console.log("PickupCtrl, create, req.user ->", req.body)
-    console.log("pickup object", req.body)
+    // console.log("PickupCtrl, create, req.user ->", req.body)
+    // console.log("pickup object", req.body)
     req.body.receiver = req.user._id
     req.body.distributor = req.body.distributor
-    console.log("pickup after", req.body)
+    // console.log("pickup after", req.body)
     const request = await Pickup.create(req.body);
     res.json(request);
   } catch (err) {
@@ -43,12 +43,12 @@ async function getReceiverPickups(req, res) {
 
 async function getDistributorPickups(req, res) {
   try {
-    console.log("Pickups Ctrl params id ->", req.params.id)
+    // console.log("Pickups Ctrl params id ->", req.params.id)
     const pickups = await Pickup.find({ 'distributor': req.params.id })
     .populate('receiver')
     .populate('postInfo')
     .populate('distributor')
-    console.log("Pickups Ctrl ->", pickups);
+    // console.log("Pickups Ctrl ->", pickups);
     res.json(pickups);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -62,15 +62,18 @@ async function getPickup(req, res) {
       .populate('postInfo')
       .populate('distributor');
     res.json(pickup);
+    console.log("Pickup Get One Ctrl ->", pickup);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 }
 
 async function updatePickup(req, res) {
+  console.log("Update - >'req.body'", req.body)
   try {
     const pickup = await Pickup.findById(req.params.id);
-    if (!pickup.user.equals(req.user._id)) return res.status(401).json({ msg: 'Not Authorized' });
+    if (!pickup.distributor.equals(req.user._id))
+      {return res.status(401).json({ msg: 'Not Authorized' });}
     Object.assign(pickup, req.body);
     await pickup.save();
     res.json(pickup);

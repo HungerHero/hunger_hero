@@ -3,18 +3,11 @@ import PickupRequestCard from '../../components/PickupRequestCard/PickupRequestC
 import * as pickupAPI from '../../utilities/pickup-api';
 import './HungryRequestPage.css'
 
-export default function HungryRequestPage( { user, posts } ) {
-    const [pickupRequests, setPickupRequests] = useState([]);
+export default function HungryRequestPage( { user, pickupRequests, setPickupRequests } ) {
+    
     console.log(user, ' <- user');
 
-    useEffect(function() {
-        async function getPickupRequests() {
-            const pickupRequests = await pickupAPI.getReceiverPickups(user._id);
-            console.log('pickupRequests -> ', pickupRequests)
-            setPickupRequests(pickupRequests);
-          }
-        getPickupRequests();
-    }, [user._id]);
+    
     console.log("pickups -> ", pickupRequests);
 
     async function handleDeletePickupRequest(id) {

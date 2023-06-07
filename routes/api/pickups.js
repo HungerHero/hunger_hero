@@ -7,7 +7,7 @@ router.post('/', ensureLoggedIn, pickupsCtrl.createPickup);
 router.get('/receiver/:id', pickupsCtrl.getReceiverPickups);
 router.get('/distributor/:id', pickupsCtrl.getDistributorPickups);
 // router.get('/:id', pickupsCtrl.getPickup);
-// router.put('/:id', ensureLoggedIn, pickupsCtrl.updatePickup);
-// router.delete('/:id', ensureLoggedIn, pickupsCtrl.deletePickup);
+router.put('/:id', ensureLoggedIn, pickupsCtrl.updatePickup);
+router.delete('/:id', ensureLoggedIn, pickupsCtrl.delete);
 
 module.exports = router;

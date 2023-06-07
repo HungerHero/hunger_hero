@@ -25,7 +25,7 @@ console.log('postHistory user -> ', user);
         {posts.map(post => post.user === user._id ? (
           <>
             <HeroHistoryCard 
-              key={post._id} 
+              id={post._id} 
               name={post.name} 
               quantity={post.quantity} 
               description={post.description} 
